@@ -1,10 +1,20 @@
 Package: gamemanageR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Processing data from drive counts for game management
 Version: 0.1
 Date: 2016-03-08
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Marcin K. Dyderski
+Maintainer: Marcin K. Dyderski <Marcin.Dyderski@gmail.com>
+Description: This package is dedicated to deal with data coming from drive counts
+License: TBA- important!
 LazyData: TRUE
+RoxygenNote: 5.0.1
+Import:
+    dplyr,
+    EnvStats,
+    ggplot2,
+    MASS,
+    reshape2,
+    shotGroups,
+    VGAM
+
