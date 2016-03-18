@@ -12,9 +12,4 @@ ts.ray(x)
 \description{
 \code{ts.ray}  tests empiric distribution versus Rayleigh theoretical distribution
 }
-\details{
-\usage{ts.ray(x)}
-
-Here will be described how it works TBA
-}
 

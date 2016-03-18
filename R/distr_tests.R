@@ -5,8 +5,8 @@
 #'
 #'\usage{ts.ray(x)}
 #' @param x a vector containing observations, e.g. game densities
-#' @return p-value of Kolmogorov-Smirnov test, computed by \code{link\{ks.test}}
-#' @details Here will be described how it works TBA
+#' @value p-value of Kolmogorov-Smirnov test, computed by \code{link\{ks.test}}
+#' @details compares empiric distribution \code{x} with theretical Rayleigh distribution, computed using \code{link\{rrayleigh}} function from \code{link\{VGAM}} package. Estimation of Rayleigh sigma is obtained from \code{getRayParam} function from \code{shotGroups} package
 #' @export
 ts.ray<-function(x) {ifelse(length(x[x>0])<2,0, ks.test(x[which(x>0)], VGAM:::rrayleigh(1000, shotGroups:::getRayParam(x[which(x>0)])$sigma[1]))$p.value)}
 
@@ -55,4 +55,4 @@ ts.nor<-function(x) {ifelse(length(x[x>0])<2,0,ks.test(x[which(x>0)], 'pnorm', m
 #' @return p-value of Kolmogorov-Smirnov test, computed by \code{link\{ks.test}}
 #' @details Here will be described how it works TBA
 #' @export
-ts.geom<-function(x) {ifelse(length(x[x>0])<2,0,ks.test(x[which(x>0)], 'pgeom', fitdistr(x[which(x>0)], 'geometric')$estimate[1])$p.val)}
+ts.geom<-function(x) {ifelse(length(x[x>0])<2,0,ks.test(x[which(x>0)], 'pgeom', MASS:::fitdistr(x[which(x>0)], 'geometric')$estimate[1])$p.val)}
