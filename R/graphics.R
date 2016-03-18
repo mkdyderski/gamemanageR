@@ -40,3 +40,32 @@ pdf(filnam, paper = 'a4r')
 sapply(3:ncol(x), ryswyk)
 dev.off()
 }
+
+#' rysuj
+#'
+#' \code{rysuj}  polish wrapper for plotting all species
+#'
+#'\usage{rysuj(x)}
+#' @param file name
+#' @return
+#'\describe{
+#'\item{value}{ggplot showing results for each method for considered species}}
+#' @details Here will be described how it works TBA
+#' @export
+#'
+
+rysuj<-function(x, spe=';',long=TRUE){
+  #load data, depndly on format
+  if(long==TRUE)      dfram<-game.load.pl(x, sep=';')      else #jak długa
+    dfram<- game.load(x, sep=';')
+  #
+   ryswyk<-function(i){
+    dupa<-cdensplot(compdens(dfram[,i],dfram[,2]))+ggplot2:::ggtitle(colnames(x)[i])
+    print(dupa)
+  }
+name<-paste('wykres_',x)
+  filnam<-paste(name, '.pdf')
+  pdf(filnam, paper = 'a4r')
+  sapply(3:ncol(dfram), ryswyk)
+  dev.off()
+}
