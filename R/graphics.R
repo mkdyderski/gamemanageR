@@ -70,12 +70,14 @@ rysuj<-function(x, spe=';',long=TRUE){
     pl2<-ggplot2:::ggplot(duppa,ggplot2:::aes(x=obs))+ggplot2:::geom_histogram(fill='gray',col='black',binwidth =50)+ggplot2:::theme_bw()+ggplot2:::labs(x='Density', y='Number of observations')
     pl3<-ggplot2:::ggplot(duppa,ggplot2:::aes(x=obs))+ggplot2:::geom_density(fill='gray',col='black',adjust=2)+ggplot2:::theme_bw()+ggplot2:::labs(x='Density [ind. / 1000 ha]', y='Density function response')
 
+    pl4<-ggplot2:::ggplot(duppa, ggplot2:::aes(x=obs))+ggplot2:::geom_density(fill='black',adjust=2)+ggplot2:::xlim(-max(duppa$obs)*-1.5,max(duppa$obs*2.5))+ggplot2:::theme_bw()+ggplot2:::labs(x='Density [ind. / 1000 ha]', y='Density function response')
+
     library(grid)
     # Move to a new page
     grid:::grid.newpage()
 
     # Create layout : nrow = 2, ncol = 2
-    grid:::pushViewport(grid:::viewport(layout = grid.layout(2, 2)))
+    grid:::pushViewport(grid:::viewport(layout = grid.layout(3, 2)))
 
     # A helper function to define a region on the layout
     define_region <- function(row, col){
@@ -85,10 +87,13 @@ rysuj<-function(x, spe=';',long=TRUE){
     print(pl1, vp=define_region(1, 1:2))
     print(pl2, vp = define_region(2, 1))
     print(pl3, vp = define_region(2, 2))
+    print(pl4, vp = define_region(3, 1:2))
   }
-name<-paste('wykres_',x)
+  name<-paste('wykres_',x)
   filnam<-paste(name, '.pdf')
-  pdf(filnam, paper = 'a4r')
+  pdf(filnam, paper = 'a4')
   sapply(3:ncol(dfram), ryswyk)
   dev.off()
 }
+
+
